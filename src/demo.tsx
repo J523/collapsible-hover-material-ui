@@ -27,17 +27,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NestedList() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [collapse, setCollapse] = React.useState(false);
 
   const handleMouseOver = () => {
+    console.log("mouse over called");
     setOpen(true);
   };
 
   const handleMouseOut = () => {
     setTimeout(() => {
       setOpen(false);
-    }, 1000);
+    }, 0);
   };
   const handleCollapseIn = () => {
     console.log("collapsing in");
@@ -51,6 +52,9 @@ export default function NestedList() {
     console.log(collapse);
   };
 
+  const handleFouc = () => {
+    console.log("isMouseOver");
+  };
   return (
     <List
       component="nav"
@@ -64,8 +68,9 @@ export default function NestedList() {
     >
       <ListItem
         button
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={handleMouseOut}
+        onMouseUp={handleFouc}
       >
         <ListItemIcon>
           <InboxIcon />
